@@ -72,12 +72,14 @@ void heapify(int arr[], int i, int max){
     }
 }
 
+
 void popmax(int arr[], int i){
     int tmp = arr[0];
     arr[0] = arr[i];
     arr[i] = tmp;
     heapify(arr, 0, i-1);
 }
+
 
 void heapsort(int arr[], int max){
     for (int j = max/2; j > -1; --j){
