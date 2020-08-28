@@ -89,7 +89,7 @@ def twoListMergeSort(index,values):
     temp = index.copy()
     counter = 1
     while True:
-        for i in range(0, int(length/2 * counter)-1):
+        for i in range(0, int(length/2 * counter)):
             l,r = 0,0
             left = (2 * i) * counter
             right = (2 * i + 1) * counter
