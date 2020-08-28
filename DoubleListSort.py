@@ -79,7 +79,8 @@ def twoListHeap(index, values):
         twoListPopMax(index, values, j)
 
 # Mergesort
-
+# Just trying a unorthodox method of mergesort
+# It works but the complexity seems wrong so will need to fix it some day
 
 def twoListMergeSort(index,values):
     length = len(index)
