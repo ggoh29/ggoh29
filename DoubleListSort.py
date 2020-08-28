@@ -42,26 +42,29 @@ def twoListPopMax(index, values, counter):
     temp = index[0]
     index[0] = index[counter]
     index[counter] = temp
-    twoListHeapify(index, values, 0, counter)
+    twoListHeapify(index, values, 1, counter)
 
 
 def twoListHeapify(index, values, i, mx):
     if i * 2 + 1 < mx:
-        l = i * 2
-        r = i * 2 + 1
+        l = i * 2 - 1
+        r = i * 2
         if values[index[l]] > values[index[r]]:
             pointer = l
         else:
             pointer = r
+        i -= 1
         if values[index[pointer]] > values[index[i]]:
             temp = index[pointer]
             index[pointer] = index[i]
             index[i] = temp
-            twoListHeapify(index, values, pointer, mx)
-    elif i * 2 + 1 == mx:
-        if values[index[i]] > values[index[i * 2]]:
-            temp = index[i * 2]
-            index[i * 2] = index[i]
+            twoListHeapify(index, values, pointer + 1, mx)
+    elif i * 2 == mx:
+        i -= 1
+        mx -= 1
+        if values[index[i]] > values[index[mx]]:
+            temp = index[mx]
+            index[mx] = index[i]
             index[i] = temp
 
 
@@ -70,7 +73,7 @@ def twoListHeap(index, values):
     if length != len(values):
         raise Exception('length mismatch')
     start = math.floor(length/2)
-    for i in range(start, -1, -1):
+    for i in range(start, 0, -1):
         twoListHeapify(index, values, i, length)
     for j in range(length-1, -1, -1):
         twoListPopMax(index, values, j)
