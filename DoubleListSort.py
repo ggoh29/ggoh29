@@ -37,6 +37,55 @@ def twoListQuick(index, values):
 
 # Heapsort
 
+def singleListPopMax(index, counter):
+    temp = index[0]
+    index[0] = index[counter]
+    index[counter] = temp
+    singleListHeapify(index, 1, counter)
+
+
+def singleListHeapify(index, i, mx):
+    if i * 2 + 1 <= mx:
+        l = i * 2 - 1 
+        r = l + 1
+        if index[l] > index[r]:
+            pointer = l
+        else:
+            pointer = r
+        i -= 1
+        if index[pointer] > index[i]:
+            temp = index[pointer]
+            index[pointer] = index[i]
+            index[i] = temp
+            singleListHeapify(index, pointer+1, mx)
+    elif i * 2 == mx:
+        i -= 1
+        mx -= 1
+        if index[i] < index[mx]:
+            temp = index[mx]
+            index[mx] = index[i]
+            index[i] = temp
+
+        
+def singleListHeap(index):
+    length = len(index)
+    start = math.floor(length/2)+1
+    for i in range(start, 0, -1):
+        singleListHeapify(index, i, length)
+    for j in range(length-1, -1, -1):
+        singleListPopMax(index,  j)
+        
+# double list
+        
+        
+def twoListHeap(index):
+    length = len(index)
+    start = math.floor(length/2)+1
+    for i in range(start, 0, -1):
+        twoListHeapify(index, i, length)
+    for j in range(length-1, -1, -1):
+        twoListPopMax(index,  j)
+
 
 def twoListPopMax(index, values, counter):
     temp = index[0]
